@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Levels({level,prepare}){
+function Levels({level,prepare,color}){
     return (
         <div className='GameP'>
-            <h1 style={{marginBottom: '1em'}}>Выберите уровень сложности</h1>
+            <h1 style={{marginBottom: '1em', color: color}}>Выберите уровень сложности</h1>
             <button className = 'btn' style={{margin: '1em'}} onClick={()=>{level(300); prepare('game')}}>Легкий</button>
             <button className = 'btn' style={{margin: '1em'}} onClick={()=>{level(200); prepare('game')}}>Средний</button>
             <button className = 'btn' style={{margin: '1em'}} onClick={()=>{level(100); prepare('game')}}>Сложный</button>

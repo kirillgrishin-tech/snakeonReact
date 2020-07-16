@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Records({prep,add,setAdd,setStyle,style}){
+function Records({prep,add,setAdd,setStyle,color}){
     const server = '192.168.1.9';
     const [value,setValue] = React.useState();
     const [rec,setRec] = React.useState();
@@ -29,22 +29,22 @@ function Records({prep,add,setAdd,setStyle,style}){
       }
     
     return(
-    <div className='GameP'>
+    <div className='GameP' style={{color: color}}>
         <h1 style={{marginBottom: '1em'}}>Список рекордов</h1>
-        <table style={{border: '2px solid black', width: '100%'}}>
+        <table style={{border: `2px solid ${color}` , width: '100%'}}>
             <tr>
-              <th style={{border: '2px solid black', width: '10%'}}>Место</th>
-              <th style={{border: '2px solid black', width:'20%'}}>Дата</th>
-              <th style={{border: '2px solid black'}}>Игрок</th>
-              <th style={{border: '2px solid black',width: '10%'}}>Счет</th>
+              <th style={{border: `2px solid ${color}`, width: '10%'}}>Место</th>
+              <th style={{border: `2px solid ${color}`, width:'20%'}}>Дата</th>
+              <th style={{border: `2px solid ${color}`}}>Игрок</th>
+              <th style={{border: `2px solid ${color}`,width: '10%'}}>Счет</th>
             </tr>
             {rec && rec.map((rc,index) => {
                 return (
                 <tr key={rc.id}>
-                  <td style={{border: '2px solid black', width: '10%'}}>{index+1}</td>
-                  <td style={{border: '2px solid black', width:'20%'}}>{rc.date.slice(0,10)}</td>
-                  <td style={{border: '2px solid black'}}>{rc.player}</td>
-                  <td style={{border: '2px solid black',width: '10%'}}>{rc.score}</td>
+                  <td style={{border: `2px solid ${color}`, width: '10%'}}>{index+1}</td>
+                  <td style={{border: `2px solid ${color}`, width:'20%'}}>{rc.date.slice(0,10)}</td>
+                  <td style={{border: `2px solid ${color}`}}>{rc.player}</td>
+                  <td style={{border: `2px solid ${color}`,width: '10%'}}>{rc.score}</td>
                 </tr>)
             })
             }
@@ -52,8 +52,8 @@ function Records({prep,add,setAdd,setStyle,style}){
             {add !=0 && <tr>
               <td style={{width: '10%'}}></td>
               <td style={{width:'20%'}}></td>
-              <td style={{border: '2px solid black'}}>Введите имя: <input value={value} onChange={(event) => {setValue(event.target.value)}}/></td>
-              <td style={{border: '2px solid black',width: '10%'}}>{add}</td>
+              <td style={{border: `2px solid ${color}`}}>Введите имя: <input value={value} onChange={(event) => {setValue(event.target.value)}}/></td>
+              <td style={{border: `2px solid ${color}`,width: '10%'}}>{add}</td>
             </tr>
             }
 

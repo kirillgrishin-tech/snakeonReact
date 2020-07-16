@@ -86,9 +86,9 @@ button {
     top: 0px;
     left: '0px';
     width: calc(100%);
-    height: calc(100%);           
-    border: 2px solid #001100;
+    height: calc(100%);       
 }
+
 .food{
         background-color:#FF0000;
         z-index: 30;
