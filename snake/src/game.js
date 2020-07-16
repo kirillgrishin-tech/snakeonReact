@@ -77,7 +77,7 @@ function Game({level,over,score,setScore,setStyle,style}) {
           headCell[1] = fieldSizeY - 1;
         if (headCell[1]===fieldSizeY)
           headCell[1] = 0;
-        tmp = cell.filter(ce => {return (ce.x === headCell[0]) && (ce.y === headCell[1])})
+        tmp = cell.filter(ce => {return (ce.x === headCell[0]) && (ce.y === headCell[1])})[0];
       }
       if ( tmp != null && tmp.className==='ldx-float-ttb-in' ){
           let removeTail = bd.shift();
