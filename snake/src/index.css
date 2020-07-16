@@ -89,12 +89,6 @@ button {
     height: calc(100%);       
 }
 
-.food{
-        background-color:#FF0000;
-        z-index: 30;
-        box-shadow: 0 0 10px #000000 inset;
-        transition: background-color 2s;
-    }
 
     .btn {
         display: inline-block;
@@ -151,4 +145,38 @@ button {
           transform: rotate(360deg);
         }
       }
-      
+
+      @keyframes ldx-float-ttb-in {
+        0% {
+         animation-timing-function:cubic-bezier(0.2242,0.7499,0.3142,0.8148);
+         transform:translate(0,-14.925%);
+         opacity:.005
+        }
+        100% {
+         transform:translate(0,0);
+         opacity:1
+        }
+       }
+
+      .ldx-float-ttb-in {
+        margin: 0;
+        display: inline-block;
+        background-color: rgb(55, 57, 165);
+        height: 100%;
+        width: 23px;
+        border: 1px solid #010;
+        border-radius: 4px;
+        z-index: 30;
+        transition: background-color 0.3s;
+        animation:ldx-float-ttb-in 1s 1 linear;
+        animation-fill-mode:forwards;
+        transform:matrix(1,0,0,1,0,-14.925);
+        opacity:.005
+       }
+
+    .food{
+        background-color:#FF0000;
+        z-index: 30;
+        box-shadow: 0 0 10px #000000 inset;
+        transition: background-color 2s;
+    }

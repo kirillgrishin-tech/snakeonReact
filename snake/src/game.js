@@ -18,7 +18,7 @@ function Game({level,over,score,setScore,setStyle,style}) {
     })
   for (let y = 0; y < fieldSizeY; y++){
       cl.push({
-          className: 'cell',
+          className: 'ldx-float-ttb-in',
           x: x,
           y: y,
           style: {width : `calc(${75/fieldSizeY}%)`}
@@ -38,8 +38,8 @@ function Game({level,over,score,setScore,setStyle,style}) {
       let y = Math.round(Math.random() * (fieldSizeY-1));
       let sr = false;
       cell.map(ce => {
-        if ((ce.x === x) && (ce.y === y) && (ce.className === 'cell')) {
-            ce.className= "cell food";
+        if ((ce.x === x) && (ce.y === y) && (ce.className === 'ldx-float-ttb-in')) {
+            ce.className= "ldx-float-ttb-in food";
             sr = true;
         }})
       sr ? setCell(cell):makefood();
@@ -76,29 +76,29 @@ function Game({level,over,score,setScore,setStyle,style}) {
           tmp = ce;
         }});
       }
-      if ( tmp != null && tmp.className==='cell' ){
+      if ( tmp != null && tmp.className==='ldx-float-ttb-in' ){
           let removeTail = bd.shift();
           bd.push(headCell);
           cell.map(ce => {
             if ((ce.x === removeTail[0]) && (ce.y === removeTail[1])) {
-              ce.className='cell';
+              ce.className='ldx-float-ttb-in';
             }
             if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
-              ce.className='cell snake';
+              ce.className='ldx-float-ttb-in snake';
             }
         });
       } else { 
-          if ( tmp != null && tmp.className==='cell food'){
+          if ( tmp != null && tmp.className==='ldx-float-ttb-in food'){
               bd.push(headCell);
               cell.map(ce => {
                 if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
-                  ce.className='cell snake';
+                  ce.className='ldx-float-ttb-in snake';
                 }
               });
               setScore(bd.length-3);
               makefood();
           } else { 
-              if (tmp.className==='cell snake'){
+              if (tmp.className==='ldx-float-ttb-in snake'){
                   setStyle('absolute');
                   over('records');
               }
