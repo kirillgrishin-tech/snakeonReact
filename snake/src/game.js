@@ -37,33 +37,38 @@ function Game({level,over,score,setScore,setStyle,style}) {
       let x = Math.round(Math.random() * (fieldSizeX-1));
       let y = Math.round(Math.random() * (fieldSizeY-1));
       let sr = false;
-      cell.map(ce => {
+      let buff = cell.map(ce => {
         if ((ce.x === x) && (ce.y === y) && (ce.className === 'ldx-float-ttb-in')) {
             ce.className= "ldx-float-ttb-in food";
             sr = true;
-        }})
-      sr ? setCell(cell):makefood();
+        }
+        return ce;
+      })
+      sr ? setCell(buff):makefood();
     }
 
 
     function initSnake(body){
-      cell.map(ce => {
+      let buff = cell.map(ce => {
         for (let i=0; i<body.length; i++){
           if ((ce.x === body[i][0]) && (ce.y === body[i][1])) {
               ce.className= "cell snake";
           }
         }
+        return (ce);
     })
-    setCell(cell);
+    setCell(buff);
     }
 
     function compareEatOrGameOver (headCell, body) {
       let bd = body;
-      let tmp =null;
-      cell.map(ce => {if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
+      let tmp = null;
+      let buff = cell.map(ce => {if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
         tmp = ce;
-      }});
-      if (tmp===null ) {
+      }
+      return ce;
+    });
+      if (tmp === null ) {
         if (headCell[0]===-1)
           headCell[0] = fieldSizeX - 1;
         if (headCell[0]===fieldSizeX)
@@ -72,28 +77,28 @@ function Game({level,over,score,setScore,setStyle,style}) {
           headCell[1] = fieldSizeY - 1;
         if (headCell[1]===fieldSizeY)
           headCell[1] = 0;
-        cell.map(ce => {if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
-          tmp = ce;
-        }});
+        tmp = cell.filter(ce => {return (ce.x === headCell[0]) && (ce.y === headCell[1])})
       }
       if ( tmp != null && tmp.className==='ldx-float-ttb-in' ){
           let removeTail = bd.shift();
           bd.push(headCell);
-          cell.map(ce => {
+          buff = buff.map(ce => {
             if ((ce.x === removeTail[0]) && (ce.y === removeTail[1])) {
               ce.className='ldx-float-ttb-in';
             }
             if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
               ce.className='ldx-float-ttb-in snake';
             }
+            return ce;
         });
       } else { 
           if ( tmp != null && tmp.className==='ldx-float-ttb-in food'){
               bd.push(headCell);
-              cell.map(ce => {
+              buff = buff.map(ce => {
                 if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
                   ce.className='ldx-float-ttb-in snake';
                 }
+                return ce;
               });
               setScore(bd.length-3);
               makefood();
@@ -104,7 +109,7 @@ function Game({level,over,score,setScore,setStyle,style}) {
               }
           }
       }
-    setCell(cell.slice(0))
+    setCell(buff);
     return bd
   }
   return (

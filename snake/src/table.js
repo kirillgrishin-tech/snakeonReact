@@ -20,7 +20,7 @@ function Table({color,rec,add,value,setValue}){
         })
         }
 
-        {add !=0 && <tr>
+        {add !== 0 && <tr>
           <td style={{width: '10%'}}></td>
           <td style={{width:'20%'}}></td>
           <td style={{border: `2px solid ${color}`}}>Введите имя: <input value={value} onChange={(event) => {setValue(event.target.value)}}/></td>

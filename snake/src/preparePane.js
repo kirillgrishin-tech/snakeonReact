@@ -69,33 +69,6 @@ function PrepareGamePane ({level,field,cell,makeFood,initsnake,comparOGO}){
         })
     }
         
-            function handleswipe(swipe){
-                switch (swipe){
-                    case 'left':
-                        if (direct !== 0){
-                            directx = 2;
-                        }
-                        break;
-    
-                    case 'right':
-                        if (direct !== 2){
-                            directx = 0;
-                        }
-                        break;
-    
-                    case 'up':
-                        if (direct !== 1){
-                            directx = 3;
-                        }
-                        break;
-    
-                    case 'down':
-                        if (direct !== 3){
-                            directx = 1;
-                        }
-                        break;
-                }
-            }
 
             function swipefc(){
                 let     swipedir,
@@ -162,6 +135,8 @@ function PrepareGamePane ({level,field,cell,makeFood,initsnake,comparOGO}){
                                 if (direct !== 3){
                                     directx = 1;
                                 }
+                                break;
+                            default:
                                 break;
                         }
                     }
