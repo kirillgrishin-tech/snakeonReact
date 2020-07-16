@@ -17,6 +17,8 @@ function PrepareGamePane ({level,field,cell,makeFood,initsnake,comparOGO}){
     let snake = {
         body : [[1,1],[1,2],[1,3]],
         initialisationSnake : function (){
+            swipefc();
+            makeFood();
             initsnake(this.body);
         },
         move : function (){
@@ -196,15 +198,14 @@ function PrepareGamePane ({level,field,cell,makeFood,initsnake,comparOGO}){
         }
     }
     React.useEffect(()=>{
-        swipefc();
         snake.initialisationSnake();
-        makeFood();
         let inter = setInterval(() => {snake.move();},level);
         return ()=>{
+            clearInterval(inter);
             remswipefc();
-            clearInterval(inter)
         }
-    },[])
+        // eslint-disable-next-line
+    },[level])
     return (
         <div>
             {field.map((gp,index) =>{return <div key={index} className={gp.className} style= {gp.style}>
@@ -212,6 +213,7 @@ function PrepareGamePane ({level,field,cell,makeFood,initsnake,comparOGO}){
                     if (cl.x === index){
                         return <div key={`${cl.x},${cl.y}`}className={cl.className} style={cl.style} id={`${cl.x},${cl.y}`}></div>
                     }
+                    return null;
                 })}</div>})}
         </div>
      )

@@ -61,7 +61,8 @@ function Game({level,over,score,setScore,setStyle,style}) {
     }
 
     function compareEatOrGameOver (headCell, body) {
-      let bd = body;
+      let bd = body,
+          ovr = false; 
       let tmp = null;
       let buff = cell.map(ce => {if ((ce.x === headCell[0]) && (ce.y === headCell[1])) {
         tmp = ce;
@@ -105,11 +106,12 @@ function Game({level,over,score,setScore,setStyle,style}) {
           } else { 
               if (tmp.className==='ldx-float-ttb-in snake'){
                   setStyle('absolute');
+                  ovr = true;
                   over('records');
               }
           }
       }
-    setCell(buff);
+    !ovr && setCell(buff);
     return bd
   }
   return (
