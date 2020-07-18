@@ -1,7 +1,8 @@
 import React from 'react';
 import PrepareGamePane from './preparePane';
+import {connect} from 'react-redux'; 
 
-function Game({level,over,score,setScore,setStyle,style}) {
+function Game({level,score,setScore,setStyle,dispatch}) {
   let now = new Date();
   let hour = now.getHours();
   let brd = document.getElementsByClassName('html');
@@ -52,7 +53,7 @@ function Game({level,over,score,setScore,setStyle,style}) {
       let buff = cell.map(ce => {
         for (let i=0; i<body.length; i++){
           if ((ce.x === body[i][0]) && (ce.y === body[i][1])) {
-              ce.className= "cell snake";
+              ce.className= "ldx-float-ttb-in snake";
           }
         }
         return (ce);
@@ -107,7 +108,7 @@ function Game({level,over,score,setScore,setStyle,style}) {
               if (tmp.className==='ldx-float-ttb-in snake'){
                   setStyle('absolute');
                   ovr = true;
-                  over('records');
+                  dispatch({type: 'records'});
               }
           }
       }
@@ -122,4 +123,4 @@ function Game({level,over,score,setScore,setStyle,style}) {
   );
 }
 
-export default Game;
+export default connect()(Game);

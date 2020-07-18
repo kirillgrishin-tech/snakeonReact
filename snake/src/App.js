@@ -1,10 +1,12 @@
 import React from 'react';
-import Game from './game';
+import Game from './Game/game';
 import Init from './init';
-import Levels from './levels';
-import Records from './records';
+import Levels from './Game/levels';
+import Records from './Records/records';
+import {connect} from 'react-redux'; 
+import mapStatetoProps from './store/mapState'
 
-function App() {
+function App({prepare}) {
   const [level,setLevel] = React.useState();
   const [score,setScore] = React.useState(0);
   let now = new Date();
@@ -22,15 +24,14 @@ function App() {
     brd[0].style.backgroundColor = color;
   }
   const [position,setPosition] = React.useState('fixed');
-  const [prepare,setPrepare] = React.useState('init');
   return (
     <div className='border' style ={{backgroundColor: color, position: position}} >
-      {prepare === 'levels' && <Levels color={colorText} prepare={setPrepare} level={setLevel}/>}
-      {prepare === 'init' && <Init color={colorText} prep={setPrepare} setStyle={setPosition}/>}
-      {prepare === 'game' && <Game score ={score} setScore={setScore} level={level} over={setPrepare} setStyle={setPosition}/>}
-      {prepare === 'records' && <Records color={colorText} prep={setPrepare} add={score} setAdd={setScore} setStyle={setPosition}/>}
+      {prepare === 'levels' && <Levels color={colorText} level={setLevel}/>}
+      {prepare === 'init' && <Init color={colorText}  setStyle={setPosition}/>}
+      {prepare === 'game' && <Game score ={score} setScore={setScore} level={level} setStyle={setPosition}/>}
+      {prepare === 'records' && <Records color={colorText}  add={score} setAdd={setScore} setStyle={setPosition}/>}
     </div>
   );
 }
 
-export default App;
+export default connect(mapStatetoProps)(App);
