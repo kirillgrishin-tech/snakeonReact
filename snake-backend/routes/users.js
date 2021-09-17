@@ -10,7 +10,7 @@ const conn = new Client({
   user: 'root',
   host: 'localhost',
   database: 'myapp',
-  password: 'ZXCasQ123',
+  password: '#########',
   port: 5432
 })
 conn.connect()
